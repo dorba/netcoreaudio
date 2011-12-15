@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2222E8D7-6130-4B46-9749-474E3FE2891B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vannatech.CoreAudio</RootNamespace>
+    <AssemblyName>Vannatech.CoreAudio</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Vannatech.CoreAudio.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Vannatech.CoreAudio.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Properties\CoreAudioKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\AUDCLNT_SESSIONFLAGS_XXX.cs" />
+    <Compile Include="Constants\AUDCLNT_STREAMFLAGS_XXX.cs" />
+    <Compile Include="Constants\ComIIDs.cs" />
+    <Compile Include="Constants\PropertyKeys.cs" />
+    <Compile Include="Constants\ENDPOINT_HARDWARE_SUPPORT_XXX.cs" />
+    <Compile Include="Constants\DEVICE_STATE_XXX.cs" />
+    <Compile Include="Enumerations\AudioSessionDisconnectReason.cs" />
+    <Compile Include="Enumerations\PartType.cs" />
+    <Compile Include="Enumerations\AUDCLNT_BUFFERFLAGS.cs" />
+    <Compile Include="Enumerations\AUDCLNT_SHAREMODE.cs" />
+    <Compile Include="Enumerations\AudioSessionState.cs" />
+    <Compile Include="Enumerations\ConnectorType.cs" />
+    <Compile Include="Enumerations\DataFlow.cs" />
+    <Compile Include="Enumerations\EDataFlow.cs" />
+    <Compile Include="Enumerations\EndpointFormFactor.cs" />
+    <Compile Include="Enumerations\ERole.cs" />
+    <Compile Include="Enumerations\KSJACK_SINK_CONNECTIONTYPE.cs" />
+    <Compile Include="Externals\CLSCTX.cs" />
+    <Compile Include="Externals\STGM.cs" />
+    <Compile Include="Externals\PROPVARIANT.cs" />
+    <Compile Include="Externals\PROPERTYKEY.cs" />
+    <Compile Include="Constants\ComCLSIDs.cs" />
+    <Compile Include="Interfaces\IKsJackSinkInformation.cs" />
+    <Compile Include="Interfaces\IKsJackDescription2.cs" />
+    <Compile Include="Interfaces\IKsJackDescription.cs" />
+    <Compile Include="Interfaces\IKsFormatSupport.cs" />
+    <Compile Include="Interfaces\ISubunit.cs" />
+    <Compile Include="Interfaces\IPartsList.cs" />
+    <Compile Include="Interfaces\IPart.cs" />
+    <Compile Include="Interfaces\IDeviceTopology.cs" />
+    <Compile Include="Interfaces\IDeviceSpecificProperty.cs" />
+    <Compile Include="Interfaces\IControlInterface.cs" />
+    <Compile Include="Interfaces\IControlChangeNotify.cs" />
+    <Compile Include="Interfaces\IConnector.cs" />
+    <Compile Include="Interfaces\IChannelAudioVolume.cs" />
+    <Compile Include="Interfaces\IAudioVolumeLevel.cs" />
+    <Compile Include="Interfaces\IAudioTreble.cs" />
+    <Compile Include="Interfaces\IAudioStreamVolume.cs" />
+    <Compile Include="Interfaces\IAudioVolumeDuckNotification.cs" />
+    <Compile Include="Interfaces\IAudioSessionNotification.cs" />
+    <Compile Include="Interfaces\IAudioSessionManager2.cs" />
+    <Compile Include="Interfaces\ISimpleAudioVolume.cs" />
+    <Compile Include="Interfaces\IAudioSessionManager.cs" />
+    <Compile Include="Interfaces\IAudioSessionEnumerator.cs" />
+    <Compile Include="Interfaces\IAudioSessionControl2.cs" />
+    <Compile Include="Interfaces\IAudioSessionEvents.cs" />
+    <Compile Include="Interfaces\IAudioSessionControl.cs" />
+    <Compile Include="Interfaces\IAudioRenderClient.cs" />
+    <Compile Include="Interfaces\IAudioPeakMeter.cs" />
+    <Compile Include="Interfaces\IAudioOutputSelector.cs" />
+    <Compile Include="Interfaces\IAudioMute.cs" />
+    <Compile Include="Interfaces\IAudioMidrange.cs" />
+    <Compile Include="Interfaces\IAudioLoudness.cs" />
+    <Compile Include="Interfaces\IAudioInputSelector.cs" />
+    <Compile Include="Interfaces\IAudioClock2.cs" />
+    <Compile Include="Interfaces\IAudioClockAdjustment.cs" />
+    <Compile Include="Interfaces\IAudioClock.cs" />
+    <Compile Include="Interfaces\IAudioClient.cs" />
+    <Compile Include="Interfaces\IAudioChannelConfig.cs" />
+    <Compile Include="Interfaces\IAudioCaptureClient.cs" />
+    <Compile Include="Interfaces\IAudioBass.cs" />
+    <Compile Include="Interfaces\IPerChannelDbLevel.cs" />
+    <Compile Include="Interfaces\IAudioAutoGainControl.cs" />
+    <Compile Include="Interfaces\IAudioEndpointVolumeCallback.cs" />
+    <Compile Include="Interfaces\IAudioMeterInformation.cs" />
+    <Compile Include="Interfaces\IAudioEndpointVolumeEx.cs" />
+    <Compile Include="Interfaces\IAudioEndpointVolume.cs" />
+    <Compile Include="Interfaces\IMMNotificationClient.cs" />
+    <Compile Include="Structures\AUDIO_VOLUME_NOTIFICATION_DATA.cs" />
+    <Compile Include="Structures\KSJACK_SINK_INFORMATION.cs" />
+    <Compile Include="Structures\KSJACK_DESCRIPTION2.cs" />
+    <Compile Include="Structures\DIRECTX_AUDIO_ACTIVATION_PARAMS.cs" />
+    <Compile Include="Structures\KSJACK_DESCRIPTION.cs" />
+    <Compile Include="Structures\LUID.cs" />
+    <Compile Include="Externals\IPropertyStore.cs" />
+    <Compile Include="Interfaces\IMMEndpoint.cs" />
+    <Compile Include="Interfaces\IMMDeviceCollection.cs" />
+    <Compile Include="Interfaces\IMMDeviceEnumerator.cs" />
+    <Compile Include="Interfaces\IMMDevice.cs" />
+    <Compile Include="Interfaces\Definitions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\CoreAudioKey.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

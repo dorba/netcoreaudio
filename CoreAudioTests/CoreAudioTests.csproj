@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40A8F7EA-C45A-487B-B6E0-BC151827E8C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoreAudioTests</RootNamespace>
+    <AssemblyName>CoreAudioTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\AssertCoreAudio.cs" />
+    <Compile Include="Common\WAVEFORMATEXTENSIBLE.cs" />
+    <Compile Include="Common\KSDATAFORMAT.cs" />
+    <Compile Include="Common\WAVEFORMATEX.cs" />
+    <Compile Include="Common\DeviceActivationTestManager.cs" />
+    <Compile Include="Common\PartActivationTestManager.cs" />
+    <Compile Include="Common\PartActivation.cs" />
+    <Compile Include="Common\ServiceTestManager.cs" />
+    <Compile Include="Common\TestClass.cs" />
+    <Compile Include="Common\TestManager.cs" />
+    <Compile Include="Common\MMDeviceNotifyClient.cs" />
+    <Compile Include="Common\AudioClientService.cs" />
+    <Compile Include="Common\DeviceActivation.cs" />
+    <Compile Include="Common\PartComparer.cs" />
+    <Compile Include="EndpointVolumeApi\IAudioEndpointVolumeCallbackTest.cs" />
+    <Compile Include="EndpointVolumeApi\IAudioMeterInformationTest.cs" />
+    <Compile Include="EndpointVolumeApi\IAudioEndpointVolumeExTest.cs" />
+    <Compile Include="MMDeviceApi\IMMNotificationClientTest.cs" />
+    <Compile Include="MMDeviceApi\IMMEndpointTest.cs" />
+    <Compile Include="MMDeviceApi\IMMDeviceEnumeratorTest.cs" />
+    <Compile Include="MMDeviceApi\IMMDeviceCollectionTest.cs" />
+    <Compile Include="DeviceTopologyApi\IControlChangeNotifyTest.cs" />
+    <Compile Include="DeviceTopologyApi\ISubunitTest.cs" />
+    <Compile Include="DeviceTopologyApi\IPerChannelDbLevelTest.cs" />
+    <Compile Include="DeviceTopologyApi\IPartsListTest.cs" />
+    <Compile Include="DeviceTopologyApi\IPartTest.cs" />
+    <Compile Include="DeviceTopologyApi\IKsJackSinkInformationTest.cs" />
+    <Compile Include="DeviceTopologyApi\IKsJackDescription2Test.cs" />
+    <Compile Include="DeviceTopologyApi\IKsJackDescriptionTest.cs" />
+    <Compile Include="DeviceTopologyApi\IKsFormatSupportTest.cs" />
+    <Compile Include="DeviceTopologyApi\IDeviceTopologyTest.cs" />
+    <Compile Include="DeviceTopologyApi\IDeviceSpecificPropertyTest.cs" />
+    <Compile Include="DeviceTopologyApi\IControlInterfaceTest.cs" />
+    <Compile Include="DeviceTopologyApi\IConnectorTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioVolumeLevelTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioTrebleTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioPeakMeterTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioOutputSelectorTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioMuteTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioMidrangeTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioLoudnessTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioInputSelectorTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioChannelConfigTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioBassTest.cs" />
+    <Compile Include="DeviceTopologyApi\IAudioAutoGainControlTest.cs" />
+    <Compile Include="Wasapi\IAudioClockTest.cs" />
+    <Compile Include="Wasapi\IAudioClock2Test.cs" />
+    <Compile Include="Wasapi\IAudioClockAdjustmentTest.cs" />
+    <Compile Include="Wasapi\IAudioRenderClientTest.cs" />
+    <Compile Include="Wasapi\IAudioSessionControlTest.cs" />
+    <Compile Include="Wasapi\IAudioSessionControl2Test.cs" />
+    <Compile Include="Wasapi\IAudioSessionManagerTest.cs" />
+    <Compile Include="Wasapi\IAudioSessionManager2Test.cs" />
+    <Compile Include="Wasapi\IAudioSessionEnumeratorTest.cs" />
+    <Compile Include="Wasapi\IAudioStreamVolumeTest.cs" />
+    <Compile Include="Wasapi\IChannelAudioVolumeTest.cs" />
+    <Compile Include="Wasapi\ISimpleAudioVolumeTest.cs" />
+    <Compile Include="Wasapi\IAudioSessionEventsTest.cs" />
+    <Compile Include="Wasapi\IAudioSessionNotificationTest.cs" />
+    <Compile Include="Wasapi\IAudioVolumeDuckNotificationTest.cs" />
+    <Compile Include="Wasapi\IAudioClientTest.cs" />
+    <Compile Include="Wasapi\IAudioCaptureClientTest.cs" />
+    <Compile Include="EndpointVolumeApi\IAudioEndpointVolumeTest.cs" />
+    <Compile Include="MMDeviceApi\IMMDeviceTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\TestUtilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreAudio\CoreAudio.csproj">
+      <Project>{2222E8D7-6130-4B46-9749-474E3FE2891B}</Project>
+      <Name>CoreAudio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
