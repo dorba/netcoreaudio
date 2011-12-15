@@ -24,12 +24,12 @@ using Vannatech.CoreAudio.Enumerations;
 namespace Vannatech.CoreAudio.Interfaces
 {
     /// <summary>
-	/// Represents a point of connection between components.
+    /// Represents a point of connection between components.
     /// </summary>
     /// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371048.aspx
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371048.aspx
     /// </remarks>
-	public partial interface IConnector
+    public partial interface IConnector
     {
         /// <summary>
         /// Gets the type of this connector.
@@ -47,23 +47,23 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
         [PreserveSig]
         int GetDataFlow(
-			[Out] [MarshalAs(UnmanagedType.I4)] out DataFlow dataFlow);
+            [Out] [MarshalAs(UnmanagedType.I4)] out DataFlow dataFlow);
 
-		/// <summary>
-		/// Connects this connector to a connector in another device topology object.
-		/// </summary>
-		/// <param name="connector">The connector in the other device topology.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int ConnectTo(
-			[In] [MarshalAs(UnmanagedType.Interface)] IConnector connector);
+        /// <summary>
+        /// Connects this connector to a connector in another device topology object.
+        /// </summary>
+        /// <param name="connector">The connector in the other device topology.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int ConnectTo(
+            [In] [MarshalAs(UnmanagedType.Interface)] IConnector connector);
 
-		/// <summary>
-		/// Disconnects this connector from another connector.
-		/// </summary>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int Disconnect();
+        /// <summary>
+        /// Disconnects this connector from another connector.
+        /// </summary>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int Disconnect();
 
         /// <summary>
         /// Indicates whether this connector is connected to another connector.
@@ -72,7 +72,7 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
         [PreserveSig]
         int IsConnected(
-			[Out] [MarshalAs(UnmanagedType.Bool)] out bool isConnected);
+            [Out] [MarshalAs(UnmanagedType.Bool)] out bool isConnected);
 
         /// <summary>
         /// Gets the connector to which this connector is connected.
@@ -83,22 +83,22 @@ namespace Vannatech.CoreAudio.Interfaces
         int GetConnectedTo(
             [Out] [MarshalAs(UnmanagedType.Interface)] out IConnector connector);
 
-		/// <summary>
-		/// Gets the global ID of the connector, if any, that this connector is connected to.
-		/// </summary>
-		/// <param name="connectorId">Receives the other connectors ID.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int GetConnectorIdConnectedTo(
-			[Out] [MarshalAs(UnmanagedType.LPWStr)] out string connectorId);
+        /// <summary>
+        /// Gets the global ID of the connector, if any, that this connector is connected to.
+        /// </summary>
+        /// <param name="connectorId">Receives the other connectors ID.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int GetConnectorIdConnectedTo(
+            [Out] [MarshalAs(UnmanagedType.LPWStr)] out string connectorId);
 
-		/// <summary>
-		/// Gets the device identifier of the audio device, if any, that this connector is connected to.
-		/// </summary>
-		/// <param name="deviceId">Receives a string that contains the device identifier of the connected device.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int GetDeviceIdConnectedTo(
-			[Out] [MarshalAs(UnmanagedType.LPWStr)] out string deviceId);
+        /// <summary>
+        /// Gets the device identifier of the audio device, if any, that this connector is connected to.
+        /// </summary>
+        /// <param name="deviceId">Receives a string that contains the device identifier of the connected device.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int GetDeviceIdConnectedTo(
+            [Out] [MarshalAs(UnmanagedType.LPWStr)] out string deviceId);
     }
 }

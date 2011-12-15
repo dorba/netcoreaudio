@@ -26,15 +26,15 @@ using Vannatech.CoreAudio.Constants;
 
 namespace CoreAudioTests.EndpointVolumeApi
 {
-	/// <summary>
-	/// Tests all methods of the IAudioMeterInformation interface.
-	/// </summary>
-	[TestClass]
-	public class IAudioMeterInformationTest : TestClass<IAudioMeterInformation>
-	{
-		/// <summary>
-		/// Tests that the peak value can be received for each channel, on each available device.
-		/// </summary>
+    /// <summary>
+    /// Tests all methods of the IAudioMeterInformation interface.
+    /// </summary>
+    [TestClass]
+    public class IAudioMeterInformationTest : TestClass<IAudioMeterInformation>
+    {
+        /// <summary>
+        /// Tests that the peak value can be received for each channel, on each available device.
+        /// </summary>
         [TestMethod]
         public void IAudioMeterInformation_GetChannelsPeakValues()
         {
@@ -51,12 +51,12 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
         }
 
-		/// <summary>
-		/// Tests that the metering channel count can be received, for each available device.
-		/// </summary>
-		[TestMethod]
-		public void IAudioMeterInformation_GetMeteringChannelCount()
-		{
+        /// <summary>
+        /// Tests that the metering channel count can be received, for each available device.
+        /// </summary>
+        [TestMethod]
+        public void IAudioMeterInformation_GetMeteringChannelCount()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 var count = UInt32.MaxValue;
@@ -65,14 +65,14 @@ namespace CoreAudioTests.EndpointVolumeApi
                 AssertCoreAudio.IsHResultOk(result);
                 Assert.AreNotEqual(uint.MaxValue, count);
             });
-		}
+        }
 
-		/// <summary>
-		/// Tests that the peak value can be received, for each available device.
-		/// </summary>
-		[TestMethod]
-		public void IAudioMeterInformation_GetPeakValue()
-		{
+        /// <summary>
+        /// Tests that the peak value can be received, for each available device.
+        /// </summary>
+        [TestMethod]
+        public void IAudioMeterInformation_GetPeakValue()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 var peak = 123.456f;
@@ -81,14 +81,14 @@ namespace CoreAudioTests.EndpointVolumeApi
                 AssertCoreAudio.IsHResultOk(result);
                 Assert.AreNotEqual(123.456f, peak);
             });
-		}
+        }
 
-		/// <summary>
-		/// Tests that the hardware support mask can be received and is within the valid range, for each available device.
-		/// </summary>
-		[TestMethod]
-		public void IAudioMeterInformation_QueryHardwareSupport()
-		{
+        /// <summary>
+        /// Tests that the hardware support mask can be received and is within the valid range, for each available device.
+        /// </summary>
+        [TestMethod]
+        public void IAudioMeterInformation_QueryHardwareSupport()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 uint mask = uint.MaxValue;
@@ -97,6 +97,6 @@ namespace CoreAudioTests.EndpointVolumeApi
                 AssertCoreAudio.IsHResultOk(result);
                 Assert.IsTrue((mask >= 0) && (mask <= 7), "The hardware mask is not in the valid range.");
             });
-		}
-	}
+        }
+    }
 }

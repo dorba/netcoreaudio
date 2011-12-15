@@ -25,19 +25,19 @@ using Vannatech.CoreAudio.Constants;
 
 namespace CoreAudioTests.Wasapi
 {
-	/// <summary>
-	/// Tests all methods of the IAudioSessionNotification interface.
-	/// </summary>
-	[TestClass]
-	public class IAudioSessionNotificationTest
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		[TestMethod]
+    /// <summary>
+    /// Tests all methods of the IAudioSessionNotification interface.
+    /// </summary>
+    [TestClass]
+    public class IAudioSessionNotificationTest
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
         public void IAudioSessionNotification_OnSessionCreated()
-		{
-			Assert.Fail("TODO: Implement test for OnSessionCreated method");
-		}
-	}
+        {
+            Assert.Fail("TODO: Implement test for OnSessionCreated method");
+        }
+    }
 }

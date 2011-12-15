@@ -26,18 +26,18 @@ using Vannatech.CoreAudio.Structures;
 
 namespace CoreAudioTests.EndpointVolumeApi
 {
-	/// <summary>
-	/// Tests all methods of the IAudioEndpointVolumeCallback interface.
-	/// </summary>
-	[TestClass]
-	public class IAudioEndpointVolumeCallbackTest : TestClass<IAudioEndpointVolume>
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolumeCallback_OnNotify()
-		{
+    /// <summary>
+    /// Tests all methods of the IAudioEndpointVolumeCallback interface.
+    /// </summary>
+    [TestClass]
+    public class IAudioEndpointVolumeCallbackTest : TestClass<IAudioEndpointVolume>
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolumeCallback_OnNotify()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 var context = Guid.NewGuid();
@@ -88,8 +88,8 @@ namespace CoreAudioTests.EndpointVolumeApi
 
                 activation.UnregisterControlChangeNotify(client);
             });
-		}
-	}
+        }
+    }
 
     /// <summary>
     /// Local class used to test methods that require an object implementing IAudioEndpointVolumeCallback

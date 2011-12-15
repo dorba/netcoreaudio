@@ -25,18 +25,18 @@ using Vannatech.CoreAudio.Constants;
 
 namespace CoreAudioTests.Wasapi
 {
-	/// <summary>
-	/// Tests all methods of the IAudioClockAdjustment interface.
-	/// </summary>
-	[TestClass]
-	public class IAudioClockAdjustmentTest
-	{
-		/// <summary>
-		/// Tests that the sampe rate may be set, for each applicable audio client.
-		/// </summary>
-		[TestMethod]
+    /// <summary>
+    /// Tests all methods of the IAudioClockAdjustment interface.
+    /// </summary>
+    [TestClass]
+    public class IAudioClockAdjustmentTest
+    {
+        /// <summary>
+        /// Tests that the sampe rate may be set, for each applicable audio client.
+        /// </summary>
+        [TestMethod]
         public void IAudioClockAdjustment_SetSampleRate()
-		{
+        {
             var result = 0;
             var tested = false;
             var audioClients = TestUtilities.CreateAudioClientServiceCollection<IAudioClockAdjustment>(
@@ -74,6 +74,6 @@ namespace CoreAudioTests.Wasapi
             }
 
             if (!tested) Assert.Inconclusive("No valid sample rates could be found for any available audio client.");
-		}
-	}
+        }
+    }
 }

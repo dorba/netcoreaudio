@@ -23,14 +23,14 @@ using System.Runtime.InteropServices;
 namespace Vannatech.CoreAudio.Interfaces
 {
     /// <summary>
-	/// Provides access to a hardware volume control.
+    /// Provides access to a hardware volume control.
     /// </summary>
     /// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371019.aspx
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371019.aspx
     /// </remarks>
-	public partial interface IAudioVolumeLevel : IPerChannelDbLevel
+    public partial interface IAudioVolumeLevel : IPerChannelDbLevel
     {
-		// The IAudioVolumeLevel interface inherits from IPerChannelDbLevel but does not define additional methods or properties.
-		// Note: Although, derived classes normally do not work for COM interfaces, it does when no additional methods are defined in the subclass.
+        // The IAudioVolumeLevel interface inherits from IPerChannelDbLevel but does not define additional methods or properties.
+        // Note: Although, derived classes normally do not work for COM interfaces, it does when no additional methods are defined in the subclass.
     }
 }

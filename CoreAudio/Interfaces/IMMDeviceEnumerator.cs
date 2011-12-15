@@ -35,13 +35,13 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <summary>
         /// Generates a collection of audio endpoint devices that meet the specified criteria.
         /// </summary>
-		/// <param name="dataFlow">The <see cref="EDataFlow"/> direction for the endpoint devices in the collection.</param>
-		/// <param name="stateMask">One or more <see cref="DEVICE_STATE_XXX"/> constants that indicate the state of the endpoints in the collection.</param>
+        /// <param name="dataFlow">The <see cref="EDataFlow"/> direction for the endpoint devices in the collection.</param>
+        /// <param name="stateMask">One or more <see cref="DEVICE_STATE_XXX"/> constants that indicate the state of the endpoints in the collection.</param>
         /// <param name="devices">The <see cref="IMMDeviceCollection"/> interface of the device-collection object.</param>
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int EnumAudioEndpoints(
-			[In] [MarshalAs(UnmanagedType.I4)] EDataFlow dataFlow,
+            [In] [MarshalAs(UnmanagedType.I4)] EDataFlow dataFlow,
             [In] [MarshalAs(UnmanagedType.U4)] UInt32 stateMask,
             [Out] [MarshalAs(UnmanagedType.Interface)] out IMMDeviceCollection devices);
 
@@ -54,9 +54,9 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetDefaultAudioEndpoint(
-			[In] [MarshalAs(UnmanagedType.I4)] EDataFlow dataFlow,
-			[In] [MarshalAs(UnmanagedType.I4)] ERole role,
-			[Out] [MarshalAs(UnmanagedType.Interface)] out IMMDevice device);
+            [In] [MarshalAs(UnmanagedType.I4)] EDataFlow dataFlow,
+            [In] [MarshalAs(UnmanagedType.I4)] ERole role,
+            [Out] [MarshalAs(UnmanagedType.Interface)] out IMMDevice device);
 
         /// <summary>
         /// Retrieves an endpoint device that is specified by an endpoint device-identification string.
@@ -66,8 +66,8 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetDevice(
-			[In] [MarshalAs(UnmanagedType.LPWStr)] string endpointId,
-			[Out] [MarshalAs(UnmanagedType.Interface)] out IMMDevice device);
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string endpointId,
+            [Out] [MarshalAs(UnmanagedType.Interface)] out IMMDevice device);
 
         /// <summary>
         /// Registers a client's notification callback interface.
@@ -76,7 +76,7 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int RegisterEndpointNotificationCallback(
-			[In] [MarshalAs(UnmanagedType.Interface)] IMMNotificationClient client);
+            [In] [MarshalAs(UnmanagedType.Interface)] IMMNotificationClient client);
 
         /// <summary>
         /// Deletes the registration of a notification interface that the client registered in a previous call
@@ -86,6 +86,6 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int UnregisterEndpointNotificationCallback(
-			[In] [MarshalAs(UnmanagedType.Interface)] IMMNotificationClient client);
+            [In] [MarshalAs(UnmanagedType.Interface)] IMMNotificationClient client);
     }
 }

@@ -26,29 +26,29 @@ using Vannatech.CoreAudio.Interfaces;
 
 namespace CoreAudioTests.MMDeviceApi
 {
-	/// <summary>
-	/// Tests all methods of the IMMDeviceEnumerator interface.
-	/// </summary>
-	[TestClass]
-	public class IMMDeviceEnumeratorTest
-	{
-		/// <summary>
+    /// <summary>
+    /// Tests all methods of the IMMDeviceEnumerator interface.
+    /// </summary>
+    [TestClass]
+    public class IMMDeviceEnumeratorTest
+    {
+        /// <summary>
         /// This test method does nothing. Testing of the EnumAudioEndpoints method is implicit by testing other aspects of the IMMDevice API.
-		/// </summary>
-		[TestMethod]
+        /// </summary>
+        [TestMethod]
         public void IMMDeviceEnumerator_EnumAudioEndpoints()
-		{
+        {
             // This method is thouroughly tested through various other unit tests.
             // The entry point for most other tests starts with calling EnumAudioEndpoints.
             // TODO: Add specific test for this.
-		}
+        }
 
-		/// <summary>
-		/// Tests that the default audio endpoint for all combinations of data flow and roles can be created with S_OK HRESULT and that each device is not null.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// Tests that the default audio endpoint for all combinations of data flow and roles can be created with S_OK HRESULT and that each device is not null.
+        /// </summary>
+        [TestMethod]
         public void IMMDeviceEnumerator_GetDefaultAudioEndpoint()
-		{
+        {
             int result = 0;
             IMMDevice device = null;
             var enumerator = TestUtilities.CreateIMMDeviceEnumerator();
@@ -88,14 +88,14 @@ namespace CoreAudioTests.MMDeviceApi
             result = enumerator.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia, out device);
             AssertCoreAudio.IsHResultOk(result);
             Assert.IsNotNull(device);
-		}
+        }
 
-		/// <summary>
-		/// Tests that the GetDevice method can get each audio device individually, by ID.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// Tests that the GetDevice method can get each audio device individually, by ID.
+        /// </summary>
+        [TestMethod]
         public void IMMDeviceEnumerator_GetDevice()
-		{
+        {
             int result = 0;
             var enumerator = TestUtilities.CreateIMMDeviceEnumerator();
             var allDevices = TestUtilities.CreateIMMDeviceCollection(EDataFlow.eAll, DEVICE_STATE_XXX.DEVICE_STATEMASK_ALL);
@@ -125,28 +125,28 @@ namespace CoreAudioTests.MMDeviceApi
 
                 Assert.AreEqual(deviceId, deviceId2, "The device IDs are not equal.");
             }
-		}
+        }
 
-		/// <summary>
-		/// Tests that a valid client can be registered and an HRESULT of S_OK is returned.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// Tests that a valid client can be registered and an HRESULT of S_OK is returned.
+        /// </summary>
+        [TestMethod]
         public void IMMDeviceEnumerator_RegisterEndpointNotificationCallback()
-		{
+        {
             int result = 0;
             var enumerator = TestUtilities.CreateIMMDeviceEnumerator();
 
             var client = new MMDeviceNotifyClient();
             result = enumerator.RegisterEndpointNotificationCallback(client);
             AssertCoreAudio.IsHResultOk(result);
-		}
+        }
 
-		/// <summary>
-		/// Tests that a previously registered client can be unregistered with HRESULT of S_OK. Also tests that unregistration of an invalid client will fail.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// Tests that a previously registered client can be unregistered with HRESULT of S_OK. Also tests that unregistration of an invalid client will fail.
+        /// </summary>
+        [TestMethod]
         public void IMMDeviceEnumerator_UnregisterEndpointNotificationCallback()
-		{
+        {
             int result = 0;
             var enumerator = TestUtilities.CreateIMMDeviceEnumerator();
 
@@ -161,6 +161,6 @@ namespace CoreAudioTests.MMDeviceApi
             // Test for unregistering a non-registered client (should fail with HRESULT of ELEMENT_NOT_FOUND).
             result = enumerator.UnregisterEndpointNotificationCallback(new MMDeviceNotifyClient());
             Assert.AreEqual(TestUtilities.HRESULTS.E_NOTFOUND, (uint)result);
-		}
-	}
+        }
+    }
 }

@@ -24,12 +24,12 @@ using Vannatech.CoreAudio.Externals;
 namespace Vannatech.CoreAudio.Interfaces
 {
     /// <summary>
-	/// Provides information about the audio data formats that are supported by a software-configured I/O connection.
+    /// Provides information about the audio data formats that are supported by a software-configured I/O connection.
     /// </summary>
     /// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371384.aspx
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371384.aspx
     /// </remarks>
-	public partial interface IKsFormatSupport
+    public partial interface IKsFormatSupport
     {
         /// <summary>
         /// Indicates whether the audio adapter device supports the specified audio stream format.
@@ -44,13 +44,13 @@ namespace Vannatech.CoreAudio.Interfaces
             [In] [MarshalAs(UnmanagedType.U4)] UInt32 size,
             [Out] [MarshalAs(UnmanagedType.Bool)] out bool isSupported);
 
-		/// <summary>
-		/// Gets the preferred audio stream format for the connection.
-		/// </summary>
-		/// <param name="format">Receives the format specifier for the preferred format.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int GetDevicePreferredFormat(
+        /// <summary>
+        /// Gets the preferred audio stream format for the connection.
+        /// </summary>
+        /// <param name="format">Receives the format specifier for the preferred format.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int GetDevicePreferredFormat(
             [Out] [MarshalAs(UnmanagedType.SysInt)] out IntPtr format);
     }
 }

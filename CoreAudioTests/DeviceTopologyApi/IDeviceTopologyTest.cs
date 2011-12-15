@@ -27,189 +27,189 @@ using System.Runtime.InteropServices;
 
 namespace CoreAudioTests.DeviceTopologyApi
 {
-	/// <summary>
-	/// Tests all methods of the IDeviceTopology interface.
-	/// </summary>
-	[TestClass]
-	public class IDeviceTopologyTest : TestClass<IDeviceTopology>
-	{
-		/// <summary>
-		/// Tests that the connectors for a device topology may be received, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IDeviceTopology_GetConnector()
-		{
-			var tested = false;
+    /// <summary>
+    /// Tests all methods of the IDeviceTopology interface.
+    /// </summary>
+    [TestClass]
+    public class IDeviceTopologyTest : TestClass<IDeviceTopology>
+    {
+        /// <summary>
+        /// Tests that the connectors for a device topology may be received, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IDeviceTopology_GetConnector()
+        {
+            var tested = false;
 
-			ExecuteDeviceActivationTest(activation =>
-			{
-				UInt32 count;
-				activation.GetConnectorCount(out count);
+            ExecuteDeviceActivationTest(activation =>
+            {
+                UInt32 count;
+                activation.GetConnectorCount(out count);
 
-				for (uint i = 0; i < count; i++)
-				{
-					IConnector connector;
-					var result = activation.GetConnector(i, out connector);
+                for (uint i = 0; i < count; i++)
+                {
+                    IConnector connector;
+                    var result = activation.GetConnector(i, out connector);
 
-					Marshal.FinalReleaseComObject(connector);
+                    Marshal.FinalReleaseComObject(connector);
 
-					AssertCoreAudio.IsHResultOk(result);
-					tested = true;
-				}
-			});
+                    AssertCoreAudio.IsHResultOk(result);
+                    tested = true;
+                }
+            });
 
-			if (!tested) Assert.Inconclusive("The test cannot be run properly. No subunits were found.");
-		}
+            if (!tested) Assert.Inconclusive("The test cannot be run properly. No subunits were found.");
+        }
 
-		/// <summary>
-		/// Tests that the connector count for a device topology may be received, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IDeviceTopology_GetConnectorCount()
-		{
-			ExecuteDeviceActivationTest(activation =>
-			{
-				var count = UInt32.MaxValue;
-				var result = activation.GetConnectorCount(out count);
+        /// <summary>
+        /// Tests that the connector count for a device topology may be received, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IDeviceTopology_GetConnectorCount()
+        {
+            ExecuteDeviceActivationTest(activation =>
+            {
+                var count = UInt32.MaxValue;
+                var result = activation.GetConnectorCount(out count);
 
-				AssertCoreAudio.IsHResultOk(result);
-				Assert.AreNotEqual(UInt32.MaxValue, count, "The connector count was not received.");
-			});
-		}
+                AssertCoreAudio.IsHResultOk(result);
+                Assert.AreNotEqual(UInt32.MaxValue, count, "The connector count was not received.");
+            });
+        }
 
-		/// <summary>
-		/// Tests that the device ID for a device topology may be received, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IDeviceTopology_GetDeviceId()
-		{
-			ExecuteDeviceActivationTest(activation =>
-			{
-				string devId = "abc123";
-				var result = activation.GetDeviceId(out devId);
+        /// <summary>
+        /// Tests that the device ID for a device topology may be received, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IDeviceTopology_GetDeviceId()
+        {
+            ExecuteDeviceActivationTest(activation =>
+            {
+                string devId = "abc123";
+                var result = activation.GetDeviceId(out devId);
 
-				AssertCoreAudio.IsHResultOk(result);
-				Assert.AreNotEqual("abc123", devId, "The device ID was not received.");
-			});
-		}
+                AssertCoreAudio.IsHResultOk(result);
+                Assert.AreNotEqual("abc123", devId, "The device ID was not received.");
+            });
+        }
 
-		/// <summary>
-		/// Tests that parts in a device topology may be received by ID, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IDeviceTopology_GetPartById()
-		{
-			ExecuteDeviceActivationTest(activation =>
-			{
-				IConnector connector;
-				activation.GetConnector(0, out connector);
+        /// <summary>
+        /// Tests that parts in a device topology may be received by ID, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IDeviceTopology_GetPartById()
+        {
+            ExecuteDeviceActivationTest(activation =>
+            {
+                IConnector connector;
+                activation.GetConnector(0, out connector);
 
-				UInt32 partId;
-				string globalId;
-				((IPart)connector).GetLocalId(out partId);
-				((IPart)connector).GetGlobalId(out globalId);
+                UInt32 partId;
+                string globalId;
+                ((IPart)connector).GetLocalId(out partId);
+                ((IPart)connector).GetGlobalId(out globalId);
 
-				IPart part;
-				var result = activation.GetPartById(partId, out part);
-				AssertCoreAudio.IsHResultOk(result);
+                IPart part;
+                var result = activation.GetPartById(partId, out part);
+                AssertCoreAudio.IsHResultOk(result);
 
-				string verifyId;
-				part.GetGlobalId(out verifyId);
-				Assert.AreEqual(globalId, verifyId, "The part received did not match the expected part.");
+                string verifyId;
+                part.GetGlobalId(out verifyId);
+                Assert.AreEqual(globalId, verifyId, "The part received did not match the expected part.");
 
-				Marshal.FinalReleaseComObject(connector);
-				Marshal.FinalReleaseComObject(part);
-			});
-		}
+                Marshal.FinalReleaseComObject(connector);
+                Marshal.FinalReleaseComObject(part);
+            });
+        }
 
-		/// <summary>
-		/// Tests that a signal path can be resolved by a device topology, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IDeviceTopology_GetSignalPath()
-		{
-			var tested = false;
+        /// <summary>
+        /// Tests that a signal path can be resolved by a device topology, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IDeviceTopology_GetSignalPath()
+        {
+            var tested = false;
 
-			ExecuteDeviceActivationTest(activation =>
-			{
-				var allParts = TestUtilities.CreateIPartCollection();
+            ExecuteDeviceActivationTest(activation =>
+            {
+                var allParts = TestUtilities.CreateIPartCollection();
 
-				try
-				{
-					for (int p1 = 0; p1 < allParts.Count(); p1++)
-					{
-						for (int p2 = 0; p2 < allParts.Count(); p2++)
-						{
-							IPartsList partsList;
-							var result = activation.GetSignalPath(allParts.ElementAt(p1), allParts.ElementAt(p2), false, out partsList);
+                try
+                {
+                    for (int p1 = 0; p1 < allParts.Count(); p1++)
+                    {
+                        for (int p2 = 0; p2 < allParts.Count(); p2++)
+                        {
+                            IPartsList partsList;
+                            var result = activation.GetSignalPath(allParts.ElementAt(p1), allParts.ElementAt(p2), false, out partsList);
 
-							if ((uint)result == TestUtilities.HRESULTS.E_NOTFOUND)
-								continue;
+                            if ((uint)result == TestUtilities.HRESULTS.E_NOTFOUND)
+                                continue;
 
-							AssertCoreAudio.IsHResultOk(result);
+                            AssertCoreAudio.IsHResultOk(result);
 
-							var pCount = UInt32.MaxValue;
-							partsList.GetCount(out pCount);
+                            var pCount = UInt32.MaxValue;
+                            partsList.GetCount(out pCount);
 
-							Marshal.FinalReleaseComObject(partsList);
+                            Marshal.FinalReleaseComObject(partsList);
 
-							Assert.AreNotEqual(UInt32.MaxValue, pCount, "There count of parts cound was not received. This indicates an error in the signal path.");
-							tested = true;
-						}
-					}
-				}
-				finally
-				{
-					foreach (var part in allParts)
-						Marshal.FinalReleaseComObject(part);
-				}
-			});
+                            Assert.AreNotEqual(UInt32.MaxValue, pCount, "There count of parts cound was not received. This indicates an error in the signal path.");
+                            tested = true;
+                        }
+                    }
+                }
+                finally
+                {
+                    foreach (var part in allParts)
+                        Marshal.FinalReleaseComObject(part);
+                }
+            });
 
-			if (!tested) Assert.Inconclusive("The test cannot be run properly. No valid signal paths were found.");
-		}
+            if (!tested) Assert.Inconclusive("The test cannot be run properly. No valid signal paths were found.");
+        }
 
-		/// <summary>
-		/// Tests that the subunits for a device topology may be received, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IDeviceTopology_GetSubunit()
-		{
-			var tested = false;
+        /// <summary>
+        /// Tests that the subunits for a device topology may be received, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IDeviceTopology_GetSubunit()
+        {
+            var tested = false;
 
-			ExecuteDeviceActivationTest(activation =>
-			{
-				UInt32 count;
-				activation.GetSubunitCount(out count);
+            ExecuteDeviceActivationTest(activation =>
+            {
+                UInt32 count;
+                activation.GetSubunitCount(out count);
 
-				for (uint i = 0; i < count; i++)
-				{
-					ISubunit subunit;
-					var result = activation.GetSubunit(i, out subunit);
+                for (uint i = 0; i < count; i++)
+                {
+                    ISubunit subunit;
+                    var result = activation.GetSubunit(i, out subunit);
 
-					Marshal.FinalReleaseComObject(subunit);
+                    Marshal.FinalReleaseComObject(subunit);
 
-					AssertCoreAudio.IsHResultOk(result);
-					tested = true;
-				}
-			});
+                    AssertCoreAudio.IsHResultOk(result);
+                    tested = true;
+                }
+            });
 
-			if (!tested) Assert.Inconclusive("The test cannot be run properly. No subunits were found.");
-		}
+            if (!tested) Assert.Inconclusive("The test cannot be run properly. No subunits were found.");
+        }
 
-		/// <summary>
-		/// Tests that the subunit count for a device topology may be received, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IDeviceTopology_GetSubunitCount()
-		{
-			ExecuteDeviceActivationTest(activation =>
-			{
-				var count = UInt32.MaxValue;
-				var result = activation.GetSubunitCount(out count);
+        /// <summary>
+        /// Tests that the subunit count for a device topology may be received, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IDeviceTopology_GetSubunitCount()
+        {
+            ExecuteDeviceActivationTest(activation =>
+            {
+                var count = UInt32.MaxValue;
+                var result = activation.GetSubunitCount(out count);
 
-				AssertCoreAudio.IsHResultOk(result);
-				Assert.AreNotEqual(UInt32.MaxValue, count, "The subunit count was not received.");
-			});
-		}
-	}
+                AssertCoreAudio.IsHResultOk(result);
+                Assert.AreNotEqual(UInt32.MaxValue, count, "The subunit count was not received.");
+            });
+        }
+    }
 }

@@ -29,7 +29,7 @@ namespace Vannatech.CoreAudio.Structures
     /// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd370826.aspx
     /// </remarks>
     [StructLayout(LayoutKind.Sequential)]
-	public struct DIRECTX_AUDIO_ACTIVATION_PARAMS
+    public struct DIRECTX_AUDIO_ACTIVATION_PARAMS
     {
         /// <summary>
         /// The size in bytes of the structure.

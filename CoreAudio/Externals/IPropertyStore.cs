@@ -23,14 +23,14 @@ using System.Runtime.InteropServices;
 namespace Vannatech.CoreAudio.Externals
 {
     /// <summary>
-	/// Exposes methods for enumerating, getting, and setting property values.
+    /// Exposes methods for enumerating, getting, and setting property values.
     /// </summary>
-	/// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/bb761474.aspx
-	/// Note: This item is external to CoreAudio API, and is defined in the Windows Property System API.
-	/// </remarks>
-	[Guid("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99")]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    /// <remarks>
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/bb761474.aspx
+    /// Note: This item is external to CoreAudio API, and is defined in the Windows Property System API.
+    /// </remarks>
+    [Guid("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99")]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyStore
     {
         /// <summary>
@@ -50,7 +50,7 @@ namespace Vannatech.CoreAudio.Externals
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetAt(
-			[In] [MarshalAs(UnmanagedType.U4)] UInt32 propertyIndex,
+            [In] [MarshalAs(UnmanagedType.U4)] UInt32 propertyIndex,
             [Out] out PROPERTYKEY propertyKey);
 
         /// <summary>
@@ -75,11 +75,11 @@ namespace Vannatech.CoreAudio.Externals
             [In] ref PROPERTYKEY propertyKey,
             [In] ref PROPVARIANT value);
 
-		/// <summary>
-		/// Saves a property change.
-		/// </summary>
-		/// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
-		[PreserveSig]
-		int Commit();
+        /// <summary>
+        /// Saves a property change.
+        /// </summary>
+        /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
+        [PreserveSig]
+        int Commit();
     }
 }

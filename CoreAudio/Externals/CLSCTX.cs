@@ -21,15 +21,15 @@ using System;
 
 namespace Vannatech.CoreAudio.Externals
 {
-	/// <summary>
+    /// <summary>
     /// Values that are used in activation calls to indicate the execution contexts in which an object is to be run.
-	/// </summary>
-	/// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/ms693716.aspx
-	/// Note: This item is external to CoreAudio API, and is defined in the Windows COM API.
-	/// </remarks>
+    /// </summary>
+    /// <remarks>
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/ms693716.aspx
+    /// Note: This item is external to CoreAudio API, and is defined in the Windows COM API.
+    /// </remarks>
     public enum CLSCTX : uint
-	{
+    {
         /// <summary>
         /// The code that creates and manages objects of this class is a DLL that runs in the same process as the caller of the function specifying the class context.
         /// </summary>
@@ -140,5 +140,5 @@ namespace Vannatech.CoreAudio.Externals
         /// </summary>
         CLSCTX_PS_DLL = 0x80000000 
 
-	}
+    }
 }

@@ -26,61 +26,61 @@ using Vannatech.CoreAudio.Structures;
 
 namespace CoreAudioTests.DeviceTopologyApi
 {
-	/// <summary>
-	/// Tests all methods of the IKsJackDescription interface.
-	/// </summary>
-	[TestClass]
-	public class IKsJackDescriptionTest : TestClass<IKsJackDescription>
-	{
-		/// <summary>
-		/// Tests that the jack count may be received, for each applicable part in the system.
-		/// </summary>
-		[TestMethod]
-		public void IKsJackDescription_GetJackCount()
-		{
-			ExecutePartActivationTest(activation =>
-			{
-				var count = UInt32.MaxValue;
-				var result = activation.GetJackCount(out count);
+    /// <summary>
+    /// Tests all methods of the IKsJackDescription interface.
+    /// </summary>
+    [TestClass]
+    public class IKsJackDescriptionTest : TestClass<IKsJackDescription>
+    {
+        /// <summary>
+        /// Tests that the jack count may be received, for each applicable part in the system.
+        /// </summary>
+        [TestMethod]
+        public void IKsJackDescription_GetJackCount()
+        {
+            ExecutePartActivationTest(activation =>
+            {
+                var count = UInt32.MaxValue;
+                var result = activation.GetJackCount(out count);
 
-				AssertCoreAudio.IsHResultOk(result);
-				Assert.AreNotEqual(UInt32.MaxValue, count, "The count was not received.");
-			});
-		}
+                AssertCoreAudio.IsHResultOk(result);
+                Assert.AreNotEqual(UInt32.MaxValue, count, "The count was not received.");
+            });
+        }
 
-		/// <summary>
-		/// Tests that the jack description may be received, for each applicable part in the system.
-		/// </summary>
-		[TestMethod]
-		public void IKsJackDescription_GetJackDescription()
-		{
-			var tested = false;
+        /// <summary>
+        /// Tests that the jack description may be received, for each applicable part in the system.
+        /// </summary>
+        [TestMethod]
+        public void IKsJackDescription_GetJackDescription()
+        {
+            var tested = false;
 
-			ExecutePartActivationTest(activation =>
-			{
-				UInt32 count;
-				activation.GetJackCount(out count);
+            ExecutePartActivationTest(activation =>
+            {
+                UInt32 count;
+                activation.GetJackCount(out count);
 
-				for (uint i = 0; i < count; i++)
-				{
-					KSJACK_DESCRIPTION description = new KSJACK_DESCRIPTION();
-					description.ChannelMapping = Int32.MinValue;
-					description.ConnectionType = Int32.MinValue;
-					description.GenLocation = Int32.MinValue;
-					description.GeoLocation = Int32.MinValue;
+                for (uint i = 0; i < count; i++)
+                {
+                    KSJACK_DESCRIPTION description = new KSJACK_DESCRIPTION();
+                    description.ChannelMapping = Int32.MinValue;
+                    description.ConnectionType = Int32.MinValue;
+                    description.GenLocation = Int32.MinValue;
+                    description.GeoLocation = Int32.MinValue;
 
-					var result = activation.GetJackDescription(i, out description);
+                    var result = activation.GetJackDescription(i, out description);
 
-					AssertCoreAudio.IsHResultOk(result);
-					Assert.AreNotEqual(Int32.MinValue, description.ChannelMapping, "Part of the structure was not received.");
-					Assert.AreNotEqual(Int32.MinValue, description.ConnectionType, "Part of the structure was not received.");
-					Assert.AreNotEqual(Int32.MinValue, description.GenLocation, "Part of the structure was not received.");
-					Assert.AreNotEqual(Int32.MinValue, description.GeoLocation, "Part of the structure was not received.");
-					tested = true;
-				}
-			});
+                    AssertCoreAudio.IsHResultOk(result);
+                    Assert.AreNotEqual(Int32.MinValue, description.ChannelMapping, "Part of the structure was not received.");
+                    Assert.AreNotEqual(Int32.MinValue, description.ConnectionType, "Part of the structure was not received.");
+                    Assert.AreNotEqual(Int32.MinValue, description.GenLocation, "Part of the structure was not received.");
+                    Assert.AreNotEqual(Int32.MinValue, description.GeoLocation, "Part of the structure was not received.");
+                    tested = true;
+                }
+            });
 
-			if (!tested) Assert.Inconclusive("The test cannot be run properly. No jacks were found.");
-		}
-	}
+            if (!tested) Assert.Inconclusive("The test cannot be run properly. No jacks were found.");
+        }
+    }
 }

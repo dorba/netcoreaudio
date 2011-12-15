@@ -26,18 +26,18 @@ using Vannatech.CoreAudio.Enumerations;
 
 namespace CoreAudioTests.Wasapi
 {
-	/// <summary>
-	/// Tests all methods of the IAudioClock2 interface.
-	/// </summary>
-	[TestClass]
-	public class IAudioClock2Test
-	{
-		/// <summary>
-		/// Tests that the device position may be received, for each available audio client.
-		/// </summary>
-		[TestMethod]
+    /// <summary>
+    /// Tests all methods of the IAudioClock2 interface.
+    /// </summary>
+    [TestClass]
+    public class IAudioClock2Test
+    {
+        /// <summary>
+        /// Tests that the device position may be received, for each available audio client.
+        /// </summary>
+        [TestMethod]
         public void IAudioClock2_GetDevicePosition()
-		{
+        {
             var result = 0;
             var tested = false;
             var exclusive = false;
@@ -89,6 +89,6 @@ namespace CoreAudioTests.Wasapi
             //    exclusive = true;
             //    goto beginTest;
             //}
-		}
-	}
+        }
+    }
 }

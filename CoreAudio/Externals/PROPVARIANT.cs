@@ -22,42 +22,42 @@ using System.Runtime.InteropServices;
 
 namespace Vannatech.CoreAudio.Externals
 {
-	/// <summary>
-	/// Used by the <see cref="IPropertyStore.GetValue"/> and <see cref="IPropertyStore.SetValue"/> methods
-	/// of <see cref="IPropertyStore"/> as the primary way to program item properties.
-	/// </summary>
-	/// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/aa380072.aspx
-	/// Note: This item is external to CoreAudio API, and is defined in the Windows Structured Storage API.
-	/// </remarks>
-	[StructLayout(LayoutKind.Sequential)]
-	public struct PROPVARIANT
-	{
-		/// <summary>
-		/// Value type tag.
-		/// </summary>
-		public short vt;
+    /// <summary>
+    /// Used by the <see cref="IPropertyStore.GetValue"/> and <see cref="IPropertyStore.SetValue"/> methods
+    /// of <see cref="IPropertyStore"/> as the primary way to program item properties.
+    /// </summary>
+    /// <remarks>
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/aa380072.aspx
+    /// Note: This item is external to CoreAudio API, and is defined in the Windows Structured Storage API.
+    /// </remarks>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PROPVARIANT
+    {
+        /// <summary>
+        /// Value type tag.
+        /// </summary>
+        public short vt;
 
-		/// <summary>
-		/// Reserved for future use.
-		/// </summary>
-		public short wReserved1;
+        /// <summary>
+        /// Reserved for future use.
+        /// </summary>
+        public short wReserved1;
 
-		/// <summary>
-		/// Reserved for future use.
-		/// </summary>
-		public short wReserved2;
+        /// <summary>
+        /// Reserved for future use.
+        /// </summary>
+        public short wReserved2;
 
-		/// <summary>
-		/// Reserved for future use.
-		/// </summary>
-		public short wReserved3;
+        /// <summary>
+        /// Reserved for future use.
+        /// </summary>
+        public short wReserved3;
 
         /// <summary>
         /// Represents the variant data section.
         /// </summary>
         public VariantData Data;
-	}
+    }
 
     /// <summary>
     /// Represents the variant data section of the PROPVARIANT structure.

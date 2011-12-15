@@ -30,31 +30,31 @@ using Vannatech.CoreAudio.Interfaces;
 
 namespace CoreAudioTests.Common
 {
-	/// <summary>
-	/// Used for comparing IPart instances.
-	/// </summary>
-	public class PartComparer : IEqualityComparer<IPart>
-	{
+    /// <summary>
+    /// Used for comparing IPart instances.
+    /// </summary>
+    public class PartComparer : IEqualityComparer<IPart>
+    {
 
-		public bool Equals(IPart x, IPart y)
-		{
-			if (x == null || y == null) return false;
+        public bool Equals(IPart x, IPart y)
+        {
+            if (x == null || y == null) return false;
 
-			string xId, yId;
-			x.GetGlobalId(out xId);
-			y.GetGlobalId(out yId);
+            string xId, yId;
+            x.GetGlobalId(out xId);
+            y.GetGlobalId(out yId);
 
-			return (xId == yId);
-		}
+            return (xId == yId);
+        }
 
-		public int GetHashCode(IPart obj)
-		{
-			if (obj == null) return 0;
+        public int GetHashCode(IPart obj)
+        {
+            if (obj == null) return 0;
 
-			string partId;
-			obj.GetGlobalId(out partId);
+            string partId;
+            obj.GetGlobalId(out partId);
 
-			return partId.GetHashCode();
-		}
-	}
+            return partId.GetHashCode();
+        }
+    }
 }

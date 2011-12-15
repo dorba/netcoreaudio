@@ -226,15 +226,15 @@ namespace Vannatech.CoreAudio.Interfaces
         /// Gets the volume range for a specified channel.
         /// </summary>
         /// <param name="channelNumber">The channel number for which to get the volume range.</param>
-		/// <param name="volumeMin">The minimum volume level for the channel, in decibels.</param>
-		/// <param name="volumeMax">The maximum volume level for the channel, in decibels.</param>
-		/// <param name="volumeStep">The volume increment for the channel, in decibels.</param>
+        /// <param name="volumeMin">The minimum volume level for the channel, in decibels.</param>
+        /// <param name="volumeMax">The maximum volume level for the channel, in decibels.</param>
+        /// <param name="volumeStep">The volume increment for the channel, in decibels.</param>
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetVolumeRangeChannel(
             [In] [MarshalAs(UnmanagedType.U4)] UInt32 channelNumber,
             [Out] [MarshalAs(UnmanagedType.R4)] out float volumeMin,
-			[Out] [MarshalAs(UnmanagedType.R4)] out float volumeMax,
-			[Out] [MarshalAs(UnmanagedType.R4)] out float volumeStep);
+            [Out] [MarshalAs(UnmanagedType.R4)] out float volumeMax,
+            [Out] [MarshalAs(UnmanagedType.R4)] out float volumeStep);
     }
 }

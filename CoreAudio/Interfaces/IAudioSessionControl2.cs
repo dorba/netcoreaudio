@@ -24,12 +24,12 @@ using Vannatech.CoreAudio.Enumerations;
 namespace Vannatech.CoreAudio.Interfaces
 {
     /// <summary>
-	/// Used by a client to get information about the audio session.
+    /// Used by a client to get information about the audio session.
     /// </summary>
     /// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd368248.aspx
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd368248.aspx
     /// </remarks>
-	public partial interface IAudioSessionControl2
+    public partial interface IAudioSessionControl2
     {
         // Note: We can't derive from IAudioSessionControl, as that will produce the wrong vtable.
 
@@ -125,46 +125,46 @@ namespace Vannatech.CoreAudio.Interfaces
         #endregion
 
         /// <summary>
-		/// Retrieves the session identifier.
-		/// </summary>
-		/// <param name="sessionId">Receives the audio session identifier.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int GetSessionIdentifier(
-			[Out] [MarshalAs(UnmanagedType.LPWStr)] out string sessionId);
+        /// Retrieves the session identifier.
+        /// </summary>
+        /// <param name="sessionId">Receives the audio session identifier.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int GetSessionIdentifier(
+            [Out] [MarshalAs(UnmanagedType.LPWStr)] out string sessionId);
 
-		/// <summary>
-		/// Retrieves the identifier of the session instance.
-		/// </summary>
-		/// <param name="instanceId">Receives the identifier of a particular instance of the audio session.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int GetSessionInstanceIdentifier(
-			[Out] [MarshalAs(UnmanagedType.LPWStr)] out string instanceId);
+        /// <summary>
+        /// Retrieves the identifier of the session instance.
+        /// </summary>
+        /// <param name="instanceId">Receives the identifier of a particular instance of the audio session.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int GetSessionInstanceIdentifier(
+            [Out] [MarshalAs(UnmanagedType.LPWStr)] out string instanceId);
 
-		/// <summary>
-		/// Retrieves the process identifier of the session.
-		/// </summary>
-		/// <param name="processId">Receives the process identifier of the audio session. </param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int GetProcessId(
-			[Out] [MarshalAs(UnmanagedType.U4)] out UInt32 processId);
+        /// <summary>
+        /// Retrieves the process identifier of the session.
+        /// </summary>
+        /// <param name="processId">Receives the process identifier of the audio session. </param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int GetProcessId(
+            [Out] [MarshalAs(UnmanagedType.U4)] out UInt32 processId);
 
-		/// <summary>
-		/// Indicates whether the session is a system sounds session.
-		/// </summary>
-		/// <returns>An HRESULT code returning S_OK (0x0) or S_FALSE (0x1), indicating whether or not the session is a system sounds session.</returns>
-		[PreserveSig]
-		int IsSystemSoundsSession();
+        /// <summary>
+        /// Indicates whether the session is a system sounds session.
+        /// </summary>
+        /// <returns>An HRESULT code returning S_OK (0x0) or S_FALSE (0x1), indicating whether or not the session is a system sounds session.</returns>
+        [PreserveSig]
+        int IsSystemSoundsSession();
 
-		/// <summary>
-		/// Enables or disables the default stream attenuation experience (auto-ducking) provided by the system.
-		/// </summary>
+        /// <summary>
+        /// Enables or disables the default stream attenuation experience (auto-ducking) provided by the system.
+        /// </summary>
         /// <param name="optOut">True to disable system auto-ducking, or false to enable.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int SetDuckingPreference(
-			[In] [MarshalAs(UnmanagedType.Bool)] bool optOut);
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int SetDuckingPreference(
+            [In] [MarshalAs(UnmanagedType.Bool)] bool optOut);
     }
 }

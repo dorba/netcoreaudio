@@ -29,15 +29,15 @@ namespace CoreAudioTests.EndpointVolumeApi
     /// <summary>
     /// Tests all methods of the IAudioEndpointVolume interface.
     /// </summary>
-	[TestClass]
-	public class IAudioEndpointVolumeTest : TestClass<IAudioEndpointVolume>
-	{
-		/// <summary>
+    [TestClass]
+    public class IAudioEndpointVolumeTest : TestClass<IAudioEndpointVolume>
+    {
+        /// <summary>
         /// Tests that the channel count can be received for each available endpoint, and an HRESULT of S_OK is returned.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_GetChannelCount()
-		{
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_GetChannelCount()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 var count = UInt32.MaxValue;
@@ -46,14 +46,14 @@ namespace CoreAudioTests.EndpointVolumeApi
                 AssertCoreAudio.IsHResultOk(result);
                 Assert.AreNotEqual(uint.MaxValue, count, "The channel count value was not received.");
             });
-		}
+        }
 
-		/// <summary>
-		/// Tests that the volume level can be obtained for each available endpoint channel.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_GetChannelVolumeLevel()
-		{
+        /// <summary>
+        /// Tests that the volume level can be obtained for each available endpoint channel.
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_GetChannelVolumeLevel()
+        {
             var tested = false;
 
             ExecuteDeviceActivationTest(activation =>
@@ -73,14 +73,14 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
 
             if (!tested) Assert.Inconclusive("No channels were available to test against.");
-		}
+        }
 
-		/// <summary>
+        /// <summary>
         /// Tests that the scalar volume level can be obtained for each available endpoint channel.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_GetChannelVolumeLevelScalar()
-		{
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_GetChannelVolumeLevelScalar()
+        {
             var tested = false;
 
             ExecuteDeviceActivationTest(activation =>
@@ -100,14 +100,14 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
 
             if (!tested) Assert.Inconclusive("No channels were available to test against.");
-		}
+        }
 
-		/// <summary>
+        /// <summary>
         /// Tests that the master volume level can be obtained for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_GetMasterVolumeLevel()
-		{
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_GetMasterVolumeLevel()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 float level = 123.456f;
@@ -116,14 +116,14 @@ namespace CoreAudioTests.EndpointVolumeApi
                 AssertCoreAudio.IsHResultOk(result);
                 Assert.AreNotEqual(123.456f, level, "The level value was not received.");
             });
-		}
+        }
 
-		/// <summary>
+        /// <summary>
         /// Tests that the master scalar volume level can be obtained for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_GetMasterVolumeLevelScalar()
-		{
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_GetMasterVolumeLevelScalar()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 float level = 123.456f;
@@ -132,13 +132,13 @@ namespace CoreAudioTests.EndpointVolumeApi
                 AssertCoreAudio.IsHResultOk(result);
                 Assert.AreNotEqual(123.456f, level, "The level value was not received.");
             });
-		}
+        }
 
-		/// <summary>
-		/// Tests that the muting state can be received for each available endpoint, with an HRESULT of S_OK returned.
-		/// </summary>
+        /// <summary>
+        /// Tests that the muting state can be received for each available endpoint, with an HRESULT of S_OK returned.
+        /// </summary>
         [TestMethod]
-		public void IAudioEndpointVolume_GetMute()
+        public void IAudioEndpointVolume_GetMute()
         {
             ExecuteDeviceActivationTest(activation =>
             {
@@ -154,9 +154,9 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
         }
 
-		/// <summary>
-		/// Tests that the volume ranges for each available endpoint can be received.
-		/// </summary>
+        /// <summary>
+        /// Tests that the volume ranges for each available endpoint can be received.
+        /// </summary>
         [TestMethod]
         public void IAudioEndpointVolume_GetVolumeRange()
         {
@@ -173,10 +173,10 @@ namespace CoreAudioTests.EndpointVolumeApi
         }
         
         /// <summary>
-		/// Tests that the volume step info for each available endpoint can be received.
-		/// </summary>
+        /// Tests that the volume step info for each available endpoint can be received.
+        /// </summary>
         [TestMethod]
-		public void IAudioEndpointVolume_GetVolumeStepInfo()
+        public void IAudioEndpointVolume_GetVolumeStepInfo()
         {
             ExecuteDeviceActivationTest(activation =>
             {
@@ -190,11 +190,11 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
         }
 
-		/// <summary>
-		/// Tests that the hardware support flags for each available endpoint can be received, and are within a valid range.
-		/// </summary>
+        /// <summary>
+        /// Tests that the hardware support flags for each available endpoint can be received, and are within a valid range.
+        /// </summary>
         [TestMethod]
-		public void IAudioEndpointVolume_QueryHardwareSupport()
+        public void IAudioEndpointVolume_QueryHardwareSupport()
         {
             ExecuteDeviceActivationTest(activation =>
             {
@@ -207,26 +207,26 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
         }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_RegisterControlChangeNotify()
-		{
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_RegisterControlChangeNotify()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 var client = new AudioEndpointVolumeCallback();
                 var result = activation.RegisterControlChangeNotify(client);
                 AssertCoreAudio.IsHResultOk(result);
             });
-		}
+        }
 
-		/// <summary>
-		/// Tests that the volume level can be set for each channel on each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_SetChannelVolumeLevel()
-		{
+        /// <summary>
+        /// Tests that the volume level can be set for each channel on each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_SetChannelVolumeLevel()
+        {
             var tested = false;
 
             ExecuteDeviceActivationTest(activation =>
@@ -265,14 +265,14 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
             
             if(!tested) Assert.Inconclusive("No channels were available to test against.");
-		}
+        }
 
-		/// <summary>
+        /// <summary>
         /// Tests that the scalar volume level can be set for each channel on each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_SetChannelVolumeLevelScalar()
-		{
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_SetChannelVolumeLevelScalar()
+        {
             var tested = false;
 
             ExecuteDeviceActivationTest(activation =>
@@ -307,14 +307,14 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
 
             if (!tested) Assert.Inconclusive("No channels were available to test against.");
-		}
+        }
 
-		/// <summary>
-		/// Tests that the master volume level can be set for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_SetMasterVolumeLevel()
-		{
+        /// <summary>
+        /// Tests that the master volume level can be set for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_SetMasterVolumeLevel()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 // determine valid range.
@@ -341,14 +341,14 @@ namespace CoreAudioTests.EndpointVolumeApi
                 // reset the level to the original.
                 result = activation.SetMasterVolumeLevel(levelOrig, context);
             });
-		}
+        }
 
-		/// <summary>
+        /// <summary>
         /// Tests that the master scalar volume level can be set for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_SetMasterVolumeLevelScalar()
-		{
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_SetMasterVolumeLevelScalar()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 // get the original level.
@@ -371,14 +371,14 @@ namespace CoreAudioTests.EndpointVolumeApi
                 // reset the level to the original.
                 result = activation.SetMasterVolumeLevelScalar(levelOrig, context);
             });
-		}
+        }
 
-		/// <summary>
-		/// Tests that the muting state can be set for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_SetMute()
-		{
+        /// <summary>
+        /// Tests that the muting state can be set for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_SetMute()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 // get the original mute state.
@@ -399,14 +399,14 @@ namespace CoreAudioTests.EndpointVolumeApi
                 result = activation.SetMute(muteOrig, context);
                 AssertCoreAudio.IsHResultOk(result);
             });
-		}
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_UnregisterControlChangeNotify()
-		{
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_UnregisterControlChangeNotify()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 var client = new AudioEndpointVolumeCallback();
@@ -414,11 +414,11 @@ namespace CoreAudioTests.EndpointVolumeApi
                 var result = activation.UnregisterControlChangeNotify(client);
                 AssertCoreAudio.IsHResultOk(result);
             });
-		}
+        }
 
-		/// <summary>
-		/// Tests that the volume step down decrements the step by one, for each available endpoint.
-		/// </summary>
+        /// <summary>
+        /// Tests that the volume step down decrements the step by one, for each available endpoint.
+        /// </summary>
         [TestMethod]
         public void IAudioEndpointVolume_VolumeStepDown()
         {
@@ -458,12 +458,12 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
         }
 
-		/// <summary>
-		/// Tests that the volume step up increments the step by one, for each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolume_VolumeStepUp()
-		{
+        /// <summary>
+        /// Tests that the volume step up increments the step by one, for each available endpoint.
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolume_VolumeStepUp()
+        {
             ExecuteDeviceActivationTest(activation =>
             {
                 // get the original value.
@@ -498,6 +498,6 @@ namespace CoreAudioTests.EndpointVolumeApi
                 // reset the volume level to original value.
                 activation.SetMasterVolumeLevelScalar(levelOrig, context);
             });
-		}
-	}
+        }
+    }
 }

@@ -22,12 +22,12 @@ using System.Runtime.InteropServices;
 namespace Vannatech.CoreAudio.Interfaces
 {
     /// <summary>
-	/// Enables an application to manage submixes for the audio device.
+    /// Enables an application to manage submixes for the audio device.
     /// </summary>
     /// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd370950.aspx
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd370950.aspx
     /// </remarks>
-	public partial interface IAudioSessionManager2
+    public partial interface IAudioSessionManager2
     {
         // Note: We can't derive from IAudioSessionControl, as that will produce the wrong vtable.
 
@@ -62,50 +62,50 @@ namespace Vannatech.CoreAudio.Interfaces
         #endregion
 
         /// <summary>
-		/// Gets a pointer to the audio session enumerator object used to enumerate sessions.
-		/// </summary>
-		/// <param name="sessionList">Receives the session enumerator object that the client can use to enumerate audio sessions on the audio device.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int GetSessionEnumerator(
-			[Out] [MarshalAs(UnmanagedType.Interface)] out IAudioSessionEnumerator sessionList);
+        /// Gets a pointer to the audio session enumerator object used to enumerate sessions.
+        /// </summary>
+        /// <param name="sessionList">Receives the session enumerator object that the client can use to enumerate audio sessions on the audio device.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int GetSessionEnumerator(
+            [Out] [MarshalAs(UnmanagedType.Interface)] out IAudioSessionEnumerator sessionList);
 
-		/// <summary>
-		/// Registers the application to receive a notification when a session is created.
-		/// </summary>
-		/// <param name="client">The client to be called when session events are raised.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int RegisterSessionNotification(
-			[In] IAudioSessionNotification client);
+        /// <summary>
+        /// Registers the application to receive a notification when a session is created.
+        /// </summary>
+        /// <param name="client">The client to be called when session events are raised.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int RegisterSessionNotification(
+            [In] IAudioSessionNotification client);
 
-		/// <summary>
-		/// Deletes the registration to receive a notification when a session is created.
-		/// </summary>
-		/// <param name="client">Removes the client from the callback list for session events.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int UnregisterSessionNotification(
-			[In] IAudioSessionNotification client);
+        /// <summary>
+        /// Deletes the registration to receive a notification when a session is created.
+        /// </summary>
+        /// <param name="client">Removes the client from the callback list for session events.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int UnregisterSessionNotification(
+            [In] IAudioSessionNotification client);
 
-		/// <summary>
-		/// Registers the application to receive ducking notifications.
-		/// </summary>
-		/// <param name="sessionId">A session instance identifier.</param>
-		/// <param name="client">The client to be called when ducking events are raised.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int RegisterDuckNotification(
-			[In] [MarshalAs(UnmanagedType.LPWStr)] string sessionId,
-			[In] IAudioVolumeDuckNotification client);
+        /// <summary>
+        /// Registers the application to receive ducking notifications.
+        /// </summary>
+        /// <param name="sessionId">A session instance identifier.</param>
+        /// <param name="client">The client to be called when ducking events are raised.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int RegisterDuckNotification(
+            [In] [MarshalAs(UnmanagedType.LPWStr)] string sessionId,
+            [In] IAudioVolumeDuckNotification client);
 
-		/// <summary>
-		/// Deletes the registration to receive ducking notifications.
-		/// </summary>
-		/// <param name="client">Removes the client from the callback list for ducking events.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int UnregisterDuckNotification(
-			[In] IAudioVolumeDuckNotification client);
+        /// <summary>
+        /// Deletes the registration to receive ducking notifications.
+        /// </summary>
+        /// <param name="client">Removes the client from the callback list for ducking events.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int UnregisterDuckNotification(
+            [In] IAudioVolumeDuckNotification client);
     }
 }

@@ -35,6 +35,6 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int GetDataFlow(
-			[Out] [MarshalAs(UnmanagedType.I4)] out EDataFlow dataFlow);
+            [Out] [MarshalAs(UnmanagedType.I4)] out EDataFlow dataFlow);
     }
 }

@@ -24,12 +24,12 @@ using Vannatech.CoreAudio.Enumerations;
 namespace Vannatech.CoreAudio.Interfaces
 {
     /// <summary>
-	/// Represents a part (connector or subunit) of a device topology.
+    /// Represents a part (connector or subunit) of a device topology.
     /// </summary>
     /// <remarks>
-	/// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371429.aspx
+    /// MSDN Reference: http://msdn.microsoft.com/en-us/library/dd371429.aspx
     /// </remarks>
-	public partial interface IPart
+    public partial interface IPart
     {
         /// <summary>
         /// Gets the friendly name of this part.
@@ -123,37 +123,37 @@ namespace Vannatech.CoreAudio.Interfaces
         int GetTopologyObject(
             [Out] [MarshalAs(UnmanagedType.Interface)] out IDeviceTopology deviceTopology);
 
-		/// <summary>
-		/// Activates an interface on a connector or subunit.
-		/// </summary>
-		/// <param name="classContext">The execution context in which the code that manages the newly created object will run.</param>
-		/// <param name="interfaceId">The interface ID for the requested control function.</param>
-		/// <param name="instancePtr">Receives the address of an instance implementing the interface specified by the interfaceId parameter.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int Activate(
-			[In] UInt32 classContext,
-			[In] ref Guid interfaceId,
-			[Out, Optional] [MarshalAs(UnmanagedType.IUnknown)] out object instancePtr);
+        /// <summary>
+        /// Activates an interface on a connector or subunit.
+        /// </summary>
+        /// <param name="classContext">The execution context in which the code that manages the newly created object will run.</param>
+        /// <param name="interfaceId">The interface ID for the requested control function.</param>
+        /// <param name="instancePtr">Receives the address of an instance implementing the interface specified by the interfaceId parameter.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int Activate(
+            [In] UInt32 classContext,
+            [In] ref Guid interfaceId,
+            [Out, Optional] [MarshalAs(UnmanagedType.IUnknown)] out object instancePtr);
 
-		/// <summary>
-		/// Registers the <see cref="IControlChangeNotify"/> interface, which the client implements to receive notifications of status changes in this part.
-		/// </summary>
-		/// <param name="interfaceId">The function-specific control interface that is to be monitored for control changes.</param>
-		/// <param name="client">A client object that implements the <see cref="IControlChangeNotify"/> interface.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int RegisterControlChangeCallback(
-			[In] ref Guid interfaceId,
-			[In] IControlChangeNotify client);
+        /// <summary>
+        /// Registers the <see cref="IControlChangeNotify"/> interface, which the client implements to receive notifications of status changes in this part.
+        /// </summary>
+        /// <param name="interfaceId">The function-specific control interface that is to be monitored for control changes.</param>
+        /// <param name="client">A client object that implements the <see cref="IControlChangeNotify"/> interface.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int RegisterControlChangeCallback(
+            [In] ref Guid interfaceId,
+            [In] IControlChangeNotify client);
 
-		/// <summary>
-		/// Removes a previous registration of an <see cref="IControlChangeNotify"/> interface.
-		/// </summary>
-		/// <param name="client">The client whose registration is to be removed.</param>
-		/// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
-		[PreserveSig]
-		int UnregisterControlChangeCallback(
-			[In] IControlChangeNotify client);
+        /// <summary>
+        /// Removes a previous registration of an <see cref="IControlChangeNotify"/> interface.
+        /// </summary>
+        /// <param name="client">The client whose registration is to be removed.</param>
+        /// <returns>An HRESULT code indicating whether the operation succeeded of failed.</returns>
+        [PreserveSig]
+        int UnregisterControlChangeCallback(
+            [In] IControlChangeNotify client);
     }
 }

@@ -28,23 +28,23 @@ using Vannatech.CoreAudio.Interfaces;
 
 namespace CoreAudioTests.MMDeviceApi
 {
-	/// <summary>
-	/// Tests all methods of the IMMDevice interface.
-	/// </summary>
-	[TestClass]
-	public class IMMDeviceTest
-	{
-		/// <summary>
-		/// This test ensures that each device can use any valid COM interface returned from the Activate method.
-		/// It checks to make sure each received interface is not null and an HRESULT of S_OK is returned.
-		/// </summary>
-		[TestMethod]
+    /// <summary>
+    /// Tests all methods of the IMMDevice interface.
+    /// </summary>
+    [TestClass]
+    public class IMMDeviceTest
+    {
+        /// <summary>
+        /// This test ensures that each device can use any valid COM interface returned from the Activate method.
+        /// It checks to make sure each received interface is not null and an HRESULT of S_OK is returned.
+        /// </summary>
+        [TestMethod]
         public void IMMDevice_Activate()
-		{
+        {
             var devices = TestUtilities.CreateIMMDeviceCollection(EDataFlow.eAll, DEVICE_STATE_XXX.DEVICE_STATE_ACTIVE);
 
-			foreach (var d in devices)
-			{
+            foreach (var d in devices)
+            {
                 var iid = Guid.Empty;
                 var result = -1;
                 object objInterface = null;
@@ -84,69 +84,69 @@ namespace CoreAudioTests.MMDeviceApi
                 result = d.Activate(iid, (uint)CLSCTX.CLSCTX_INPROC_SERVER, IntPtr.Zero, out objInterface);
                 AssertCoreAudio.IsHResultOk(result);
                 Assert.IsNotNull(objInterface as IDeviceTopology);
-			}
-		}
+            }
+        }
 
-		/// <summary>
-		/// This test ensures that each device can get its ID. It also checks that the received ID is not null.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// This test ensures that each device can get its ID. It also checks that the received ID is not null.
+        /// </summary>
+        [TestMethod]
         public void IMMDevice_GetId()
-		{
+        {
             var devices = TestUtilities.CreateIMMDeviceCollection();
 
-			foreach (var d in devices)
-			{
-				string strId;
-				var result = d.GetId(out strId);
+            foreach (var d in devices)
+            {
+                string strId;
+                var result = d.GetId(out strId);
 
-				AssertCoreAudio.IsHResultOk(result);
-				Assert.IsNotNull(strId);
-			}
-		}
+                AssertCoreAudio.IsHResultOk(result);
+                Assert.IsNotNull(strId);
+            }
+        }
 
-		/// <summary>
-		/// This test ensures that each device can get its state. It also checks that the received state is a valid device state constant.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// This test ensures that each device can get its state. It also checks that the received state is a valid device state constant.
+        /// </summary>
+        [TestMethod]
         public void IMMDevice_GetState()
-		{
+        {
             var devices = TestUtilities.CreateIMMDeviceCollection();
 
-			foreach (var d in devices)
-			{
-				UInt32 deviceState;
-				var result = d.GetState(out deviceState);
+            foreach (var d in devices)
+            {
+                UInt32 deviceState;
+                var result = d.GetState(out deviceState);
 
-				AssertCoreAudio.IsHResultOk(result);
-				AssertCoreAudio.IsDeviceStateValid(deviceState);
-			}
-		}
+                AssertCoreAudio.IsHResultOk(result);
+                AssertCoreAudio.IsDeviceStateValid(deviceState);
+            }
+        }
 
-		/// <summary>
-		/// This test ensures that each device can open a property store in READWRITE mode and that the received property store is non-null.
-		/// It also checks that the property store object works correctly by making a call to get the property count.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// This test ensures that each device can open a property store in READWRITE mode and that the received property store is non-null.
+        /// It also checks that the property store object works correctly by making a call to get the property count.
+        /// </summary>
+        [TestMethod]
         public void IMMDevice_OpenPropertyStore()
-		{
+        {
             var tested = false;
             var devices = TestUtilities.CreateIMMDeviceCollection();
 
-			foreach (var d in devices)
-			{
-				// Open the property store
-				IPropertyStore propertyStore;
-				var result = d.OpenPropertyStore(STGM.STGM_READ, out propertyStore);
-				AssertCoreAudio.IsHResultOk(result);
-				
-				// Verify the count can be received.
-				var propertyCount = UInt32.MaxValue;
-				result = propertyStore.GetCount(out propertyCount);
-				AssertCoreAudio.IsHResultOk(result);
-				Assert.AreNotEqual(UInt32.MaxValue, propertyCount, "The property count was not received.");
+            foreach (var d in devices)
+            {
+                // Open the property store
+                IPropertyStore propertyStore;
+                var result = d.OpenPropertyStore(STGM.STGM_READ, out propertyStore);
+                AssertCoreAudio.IsHResultOk(result);
+                
+                // Verify the count can be received.
+                var propertyCount = UInt32.MaxValue;
+                result = propertyStore.GetCount(out propertyCount);
+                AssertCoreAudio.IsHResultOk(result);
+                Assert.AreNotEqual(UInt32.MaxValue, propertyCount, "The property count was not received.");
 
-				// Get each property key, then get value.
+                // Get each property key, then get value.
                 for (uint i = 0; i < propertyCount; i++)
                 {
                     PROPERTYKEY propertyKey;
@@ -158,10 +158,10 @@ namespace CoreAudioTests.MMDeviceApi
                     if (value != null)
                         tested = true;
                 }
-			}
+            }
 
             if (!tested) Assert.Inconclusive("No property values returned valid, non-null values.");
-		}
+        }
 
         private object GetPropertyValue(IPropertyStore propertyStore, PROPERTYKEY propertyKey)
         {
@@ -203,5 +203,5 @@ namespace CoreAudioTests.MMDeviceApi
 
             return returnObj;
         }
-	}
+    }
 }

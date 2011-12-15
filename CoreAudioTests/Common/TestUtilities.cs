@@ -33,28 +33,28 @@ namespace CoreAudioTests.Common
     /// <summary>
     /// Provides common methods and classes for testing CoreAudio API.
     /// </summary>
-	internal class TestUtilities
-	{
-		/// <summary>
-		/// Contains various HRESULT codes of interest for testing.
-		/// </summary>
-		public static class HRESULTS
-		{
-			/// <summary>
-			/// HRESULT returned for element not found error.
-			/// </summary>
-			public const UInt32 E_NOTFOUND = 0x80070490;
+    internal class TestUtilities
+    {
+        /// <summary>
+        /// Contains various HRESULT codes of interest for testing.
+        /// </summary>
+        public static class HRESULTS
+        {
+            /// <summary>
+            /// HRESULT returned for element not found error.
+            /// </summary>
+            public const UInt32 E_NOTFOUND = 0x80070490;
 
-			/// <summary>
-			/// HRESULT returned when an object does not support the specified interface.
-			/// </summary>
-			public const UInt32 E_NOINTERFACE = 0x80004002;
+            /// <summary>
+            /// HRESULT returned when an object does not support the specified interface.
+            /// </summary>
+            public const UInt32 E_NOINTERFACE = 0x80004002;
 
             /// <summary>
             /// HRESULT returned when an arguemnt is invalid for the object's current state.
             /// </summary>
             public const UInt32 E_INVALIDARG = 0x80070057;
-		}
+        }
 
         /// <summary>
         /// Checks to see if an HRESULT code is a WASAPI error code.
@@ -65,26 +65,26 @@ namespace CoreAudioTests.Common
             return ((((uint)hResult) > 0x88890000) && (((uint)hResult) < 0x88890018));
         }
 
-		/// <summary>
+        /// <summary>
         /// Creates a usable IMMDevice interface or the specified direction, using the IMMDeviceEnumerator.GetDefaultAudioEndpoint method.
-		/// </summary>
+        /// </summary>
         public static IMMDevice CreateIMMDevice(EDataFlow direction)
-		{
-			var deviceEnumerator = CreateIMMDeviceEnumerator();
+        {
+            var deviceEnumerator = CreateIMMDeviceEnumerator();
 
-			IMMDevice deviceOut;
+            IMMDevice deviceOut;
             deviceEnumerator.GetDefaultAudioEndpoint(direction, ERole.eMultimedia, out deviceOut);
 
-			return deviceOut;
-		}
+            return deviceOut;
+        }
 
-		/// <summary>
-		/// Creates a usable collection of the IMMDevice interfaces.
-		/// </summary>
+        /// <summary>
+        /// Creates a usable collection of the IMMDevice interfaces.
+        /// </summary>
         public static IEnumerable<IMMDevice> CreateIMMDeviceCollection()
-		{
+        {
             return CreateIMMDeviceCollection(EDataFlow.eAll, DEVICE_STATE_XXX.DEVICE_STATEMASK_ALL);
-		}
+        }
 
         /// <summary>
         /// Creates the specified collection of the IMMDevice interfaces.
@@ -110,19 +110,19 @@ namespace CoreAudioTests.Common
                 deviceList.Add(device);
             }
 
-			if (!deviceList.Any()) Assert.Inconclusive("The test cannot be run properly. No devices were found.");
+            if (!deviceList.Any()) Assert.Inconclusive("The test cannot be run properly. No devices were found.");
 
             return deviceList;
         }
 
-		/// <summary>
-		/// Creats a usable IMMDeviceEnumerator interface.
-		/// </summary>
+        /// <summary>
+        /// Creats a usable IMMDeviceEnumerator interface.
+        /// </summary>
         public static IMMDeviceEnumerator CreateIMMDeviceEnumerator()
-		{
-			var deviceEnumeratorType = Type.GetTypeFromCLSID(new Guid(ComCLSIDs.MMDeviceEnumeratorCLSID));
-			return (IMMDeviceEnumerator)Activator.CreateInstance(deviceEnumeratorType);
-		}
+        {
+            var deviceEnumeratorType = Type.GetTypeFromCLSID(new Guid(ComCLSIDs.MMDeviceEnumeratorCLSID));
+            return (IMMDeviceEnumerator)Activator.CreateInstance(deviceEnumeratorType);
+        }
 
         /// <summary>
         /// Creates a collection of activated MMDevices for the specified interface.
@@ -238,27 +238,27 @@ namespace CoreAudioTests.Common
             return allParts;
         }
 
-		/// <summary>
-		/// Creates a collection of IPart instances, obtaining all parts that can be found on the system.
-		/// </summary>
-		/// <returns></returns>
+        /// <summary>
+        /// Creates a collection of IPart instances, obtaining all parts that can be found on the system.
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<IPart> CreateIPartCollection()
-		{
-			var partList = new List<IPart>();
-			var topologies = ActivateFromIMMDevice<IDeviceTopology>(ComIIDs.IDeviceTopologyIID);
+        {
+            var partList = new List<IPart>();
+            var topologies = ActivateFromIMMDevice<IDeviceTopology>(ComIIDs.IDeviceTopologyIID);
 
-			foreach (var top in topologies)
-			{
-				IConnector connector;
-				top.GetConnector(0, out connector);
+            foreach (var top in topologies)
+            {
+                IConnector connector;
+                top.GetConnector(0, out connector);
 
                 partList.AddRange(FindParts((IPart)connector));
-			}
+            }
 
-			if (!partList.Any()) Assert.Inconclusive("The test cannot be run properly. No part interfaces were found.");
+            if (!partList.Any()) Assert.Inconclusive("The test cannot be run properly. No part interfaces were found.");
 
             return partList.Distinct(new PartComparer());
-		}
+        }
 
         /// <summary>
         /// Creates a collection of activated Parts for the specified interface.
@@ -291,16 +291,16 @@ namespace CoreAudioTests.Common
             return activationList;
         }
 
-		/// <summary>
-		/// Creates a collection of the given interface via the IPart Activate method.
-		/// </summary>
-		/// <typeparam name="T">The type of the interface.</typeparam>
-		/// <param name="comIId">The COM interface ID.</param>
-		/// <returns>A collection of objects implementing the specified interface.</returns>
+        /// <summary>
+        /// Creates a collection of the given interface via the IPart Activate method.
+        /// </summary>
+        /// <typeparam name="T">The type of the interface.</typeparam>
+        /// <param name="comIId">The COM interface ID.</param>
+        /// <returns>A collection of objects implementing the specified interface.</returns>
         public static IEnumerable<T> ActivateFromIPart<T>(string comIId)
-		{
+        {
             return CreatePartActivationCollection<T>(comIId).Select(p => p.ActiveInterface);
-		}
+        }
 
         /// <summary>
         /// Creates a collection of the given interface via the IAudioClient GetService method, in shared mode.
@@ -315,30 +315,30 @@ namespace CoreAudioTests.Common
         }
 
         /// <summary>
-		/// Creates a collection of the given interface via the IAudioClient GetService method.
-		/// </summary>
-		/// <typeparam name="T">The type of the interface.</typeparam>
-		/// <param name="comIId">The COM interface ID.</param>
+        /// Creates a collection of the given interface via the IAudioClient GetService method.
+        /// </summary>
+        /// <typeparam name="T">The type of the interface.</typeparam>
+        /// <param name="comIId">The COM interface ID.</param>
         /// <param name="exclusiveMode">A value indicating whether or not to use exclusive mode.</param>
-		/// <returns>A collection of audio clients with services implementing the specified interface.</returns>
+        /// <returns>A collection of audio clients with services implementing the specified interface.</returns>
         public static IEnumerable<AudioClientService<T>> CreateAudioClientServiceCollection<T>(string comIId, bool exclusiveMode)
         {
             return CreateAudioClientServiceCollection<T>(comIId, exclusiveMode, 0);
         }
 
-		/// <summary>
-		/// Creates a collection of the given interface via the IAudioClient GetService method.
-		/// </summary>
-		/// <typeparam name="T">The type of the interface.</typeparam>
-		/// <param name="comIId">The COM interface ID.</param>
+        /// <summary>
+        /// Creates a collection of the given interface via the IAudioClient GetService method.
+        /// </summary>
+        /// <typeparam name="T">The type of the interface.</typeparam>
+        /// <param name="comIId">The COM interface ID.</param>
         /// <param name="exclusiveMode">A value indicating whether or not to use exclusive mode.</param>
         /// <param name="streamFlags">The stream initialization flags.</param>
-		/// <returns>A collection of audio clients with services implementing the specified interface.</returns>
+        /// <returns>A collection of audio clients with services implementing the specified interface.</returns>
         public static IEnumerable<AudioClientService<T>> CreateAudioClientServiceCollection<T>(string comIId, bool exclusiveMode, UInt32 streamFlags)
-		{
-			object objInstance;
-			var iid = new Guid(comIId);
-			var interfaceList = new List<AudioClientService<T>>();
+        {
+            object objInstance;
+            var iid = new Guid(comIId);
+            var interfaceList = new List<AudioClientService<T>>();
             var audioClients = ActivateFromIMMDevice<IAudioClient>(ComIIDs.IAudioClientIID);
 
             foreach (var ac in audioClients)
@@ -366,10 +366,10 @@ namespace CoreAudioTests.Common
                 });
             }
 
-			if (!interfaceList.Any()) Assert.Inconclusive("The test may not have run properly. No interface instances were found for the specified type.");
+            if (!interfaceList.Any()) Assert.Inconclusive("The test may not have run properly. No interface instances were found for the specified type.");
 
-			return interfaceList;
-		}
+            return interfaceList;
+        }
 
         /// <summary>
         /// Tries to resolve a valid format pointer for the audio client.
@@ -403,19 +403,19 @@ namespace CoreAudioTests.Common
 
             return formatPtr;
         }
-		
-		/// <summary>
-		/// Converts a WAVEFORMATEX pointer to a WAVEFORMATEX structure.
-		/// </summary>
-		/// <param name="formatPtr">The pointer to the wave format.</param>
-		/// <returns>A new wave format structure.</returns>
-		public static WAVEFORMATEX PointerToWaveFormat(IntPtr formatPtr)
-		{
-			WAVEFORMATEX waveFormat = new WAVEFORMATEX();
-			if (formatPtr == IntPtr.Zero) return waveFormat;
+        
+        /// <summary>
+        /// Converts a WAVEFORMATEX pointer to a WAVEFORMATEX structure.
+        /// </summary>
+        /// <param name="formatPtr">The pointer to the wave format.</param>
+        /// <returns>A new wave format structure.</returns>
+        public static WAVEFORMATEX PointerToWaveFormat(IntPtr formatPtr)
+        {
+            WAVEFORMATEX waveFormat = new WAVEFORMATEX();
+            if (formatPtr == IntPtr.Zero) return waveFormat;
 
             return (WAVEFORMATEX)Marshal.PtrToStructure(formatPtr, typeof(WAVEFORMATEX));
-		}
+        }
 
         /// <summary>
         /// Gets a collection of wave formats commonly used in pro audio.
@@ -514,5 +514,5 @@ namespace CoreAudioTests.Common
                 }
             }
         }
-	}
+    }
 }

@@ -32,15 +32,15 @@ namespace CoreAudioTests.EndpointVolumeApi
     /// <summary>
     /// Tests all methods of the IAudioEndpointVolumeEx interface.
     /// </summary>
-	[TestClass]
-	public class IAudioEndpointVolumeExTest : TestClass<IAudioEndpointVolumeEx>
-	{
-		/// <summary>
+    [TestClass]
+    public class IAudioEndpointVolumeExTest : TestClass<IAudioEndpointVolumeEx>
+    {
+        /// <summary>
         /// Tests that the volume range can be received for each channel on each available endpoint.
-		/// </summary>
-		[TestMethod]
-		public void IAudioEndpointVolumeEx_GetVolumeRangeChannel()
-		{
+        /// </summary>
+        [TestMethod]
+        public void IAudioEndpointVolumeEx_GetVolumeRangeChannel()
+        {
             var tested = false;
 
             ExecuteDeviceActivationTest(activation =>
@@ -62,6 +62,6 @@ namespace CoreAudioTests.EndpointVolumeApi
             });
 
             if (!tested) Assert.Inconclusive("There were not channels available to test against.");
-		}
-	}
+        }
+    }
 }

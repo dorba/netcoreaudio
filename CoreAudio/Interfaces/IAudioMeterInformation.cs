@@ -30,23 +30,23 @@ namespace Vannatech.CoreAudio.Interfaces
     /// </remarks>
     public partial interface IAudioMeterInformation
     {
-		/// <summary>
-		/// Gets the peak sample value for the channels in the audio stream.
-		/// </summary>
-		/// <param name="peak">The peak sample value for the audio stream.</param>
-		/// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
-		[PreserveSig]
-		int GetPeakValue(
-			[Out] [MarshalAs(UnmanagedType.R4)] out float peak);
+        /// <summary>
+        /// Gets the peak sample value for the channels in the audio stream.
+        /// </summary>
+        /// <param name="peak">The peak sample value for the audio stream.</param>
+        /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
+        [PreserveSig]
+        int GetPeakValue(
+            [Out] [MarshalAs(UnmanagedType.R4)] out float peak);
 
-		/// <summary>
-		/// Gets the number of channels in the audio stream that are monitored by peak meters.
-		/// </summary>
-		/// <param name="channelCount">The channel count.</param>
-		/// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
-		[PreserveSig]
-		int GetMeteringChannelCount(
-			[Out] [MarshalAs(UnmanagedType.U4)] out UInt32 channelCount);
+        /// <summary>
+        /// Gets the number of channels in the audio stream that are monitored by peak meters.
+        /// </summary>
+        /// <param name="channelCount">The channel count.</param>
+        /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
+        [PreserveSig]
+        int GetMeteringChannelCount(
+            [Out] [MarshalAs(UnmanagedType.U4)] out UInt32 channelCount);
 
         /// <summary>
         /// Gets the peak sample values for all the channels in the audio stream.
@@ -66,6 +66,6 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int QueryHardwareSupport(
-			[Out] [MarshalAs(UnmanagedType.U4)] out UInt32 hardwareSupportMask);
+            [Out] [MarshalAs(UnmanagedType.U4)] out UInt32 hardwareSupportMask);
     }
 }

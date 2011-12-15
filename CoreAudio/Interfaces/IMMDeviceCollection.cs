@@ -47,7 +47,7 @@ namespace Vannatech.CoreAudio.Interfaces
         /// <returns>An HRESULT code indicating whether the operation passed of failed.</returns>
         [PreserveSig]
         int Item(
-			[In] [MarshalAs(UnmanagedType.U4)] UInt32 index,
+            [In] [MarshalAs(UnmanagedType.U4)] UInt32 index,
             [Out] [MarshalAs(UnmanagedType.Interface)] out IMMDevice device);
     }
 }

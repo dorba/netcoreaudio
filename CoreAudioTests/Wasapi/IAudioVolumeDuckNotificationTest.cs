@@ -25,28 +25,28 @@ using Vannatech.CoreAudio.Constants;
 
 namespace CoreAudioTests.Wasapi
 {
-	/// <summary>
-	/// Tests all methods of the IAudioVolumeDuckNotification interface.
-	/// </summary>
-	[TestClass]
-	public class IAudioVolumeDuckNotificationTest
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		[TestMethod]
+    /// <summary>
+    /// Tests all methods of the IAudioVolumeDuckNotification interface.
+    /// </summary>
+    [TestClass]
+    public class IAudioVolumeDuckNotificationTest
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
         public void IAudioVolumeDuckNotification_OnVolumeDuckNotification()
-		{
-			Assert.Fail("TODO: Implement test for OnVolumeDuckNotification method");
-		}
+        {
+            Assert.Fail("TODO: Implement test for OnVolumeDuckNotification method");
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
         public void IAudioVolumeDuckNotification_OnVolumeUnduckNotification()
-		{
-			Assert.Fail("TODO: Implement test for OnVolumeUnduckNotification method");
-		}
-	}
+        {
+            Assert.Fail("TODO: Implement test for OnVolumeUnduckNotification method");
+        }
+    }
 }

@@ -25,17 +25,17 @@ using Vannatech.CoreAudio.Constants;
 
 namespace CoreAudioTests.DeviceTopologyApi
 {
-	/// <summary>
-	/// Provides test methods for each interface that derives from IPerChannelDbLevel
-	/// </summary>
-	public class IPerChannelDbLevelTest<T> : TestClass<T> where T : IPerChannelDbLevel
-	{
-		// No methods are called directly against this interface.
-		// It only serves as a base for the following:
-			// * IAudioBass
-			// * IAudioMidrange
-			// * IAudioTreble
-			// * IAudioVolumeLevel
+    /// <summary>
+    /// Provides test methods for each interface that derives from IPerChannelDbLevel
+    /// </summary>
+    public class IPerChannelDbLevelTest<T> : TestClass<T> where T : IPerChannelDbLevel
+    {
+        // No methods are called directly against this interface.
+        // It only serves as a base for the following:
+            // * IAudioBass
+            // * IAudioMidrange
+            // * IAudioTreble
+            // * IAudioVolumeLevel
 
         // Methods below server as common tests for each of the derived interfaces.
 
@@ -260,5 +260,5 @@ namespace CoreAudioTests.DeviceTopologyApi
 
             if (!tested) Assert.Inconclusive("No channels were available to test against.");
         }
-	}
+    }
 }
